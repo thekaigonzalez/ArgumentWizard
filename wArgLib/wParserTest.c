@@ -15,6 +15,7 @@ main (int argc, char **argv)
     {
       return -1;
     }
+    
   wValue *v = wFlagValue (wOptionsFindFlag (wArgParserOptions (parser), 'f'));
   wValue *z = wFlagValue (wOptionsFindFlag (wArgParserOptions (parser), 'z'));
 
