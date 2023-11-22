@@ -27,6 +27,13 @@ $ ./program -ab "hello"
 
 and both `-a` will be true, and `-b` will be "hello".
 
+## Why not `getopt`?
+
+The reason I decided not to use `getopt` is because I just couldn't understand
+it. There's really no other reason because it is definitely very powerful and
+stable, however, this gave me something to work on as well as a way to implement
+better argument parsing into my C programs.
+
 ## Example
 
 ```c
