@@ -67,6 +67,10 @@ wParseArgs (wArgParser *self, char **argv, int argc)
           break;
         case WFlagSingular:
           {
+            if (strcmp(name, "h") == 0) {
+              self->help_needed = 1;
+              break;
+            }
             for (int j = 0; j < strlen (name); j++)
               {
                 f = wOptionsFindFlag (self->options, name[j]);
@@ -95,6 +99,10 @@ wParseArgs (wArgParser *self, char **argv, int argc)
           break;
         case WFlagLong:
           {
+            if (strcmp(name, "help") == 0) {
+              self->help_needed = 1;
+              break;
+            }
             f = wOptionsFindFlagLong (self->options, name);
             if (!f)
               {
@@ -138,6 +146,12 @@ int
 wArgParserStragglyCount (wArgParser *self)
 {
   return wOptionsStragglyCount (self->options);
+}
+
+void
+wArgParserPrintHelp (wArgParser *self, char *__progname, char *usage)
+{
+  wOptionsPrintHelp (self->options, __progname, usage);
 }
 
 wStraggly *
