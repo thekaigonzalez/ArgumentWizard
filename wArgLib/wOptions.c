@@ -177,6 +177,41 @@ wOptionsGetStragglys (wOptions *self)
 }
 
 void
+wOptionsPrintHelp (wOptions *self, char *__progname, char *usage)
+{
+  if (!self) {
+    wErrorDisplay ("wOptionsPrintHelp: self is null");
+    return;
+  }
+
+  if (!self->__pool) {
+    wErrorDisplay ("wOptionsPrintHelp: self->__pool is null");
+    return;
+  }
+
+  if (!__progname) {
+    wErrorDisplay ("wOptionsPrintHelp: program name is required");
+    return;
+  }
+
+  if (!usage) {
+    wErrorDisplay ("wOptionsPrintHelp: usage is required");
+    return;
+  }
+
+  printf("usage:\n\t%s %s\n", __progname, usage);
+  printf("\nflags:\n");
+
+  for (int i = 0; i < self->flags_count; i++) {
+    wFlag *flag = self->flags[i];
+
+    printf("\t-%c --%s\n", wFlagShort(flag), wFlagLong(flag));
+    printf("\t\t%s\n", wFlagHelp(flag));
+  }
+
+}
+
+void
 wOptionsAddStraggly (wOptions *self, char *src)
 {
   if (!self)
