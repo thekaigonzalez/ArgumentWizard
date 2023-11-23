@@ -5,8 +5,8 @@ main (int argc, char **argv)
   wArgParser *parser = wArgParserCreate ();
 
   wOptionsAddFlag (wArgParserOptions (parser), 'f', "flag",
-                   "This flag does this.", WString);
-  wOptionsAddFlag (wArgParserOptions (parser), 'z', "zip", "This flag zips.",
+                   "Example flag 1 -> Requires a string to be passed", WString);
+  wOptionsAddFlag (wArgParserOptions (parser), 'z', "zip", "A boolean flag to check zipping.",
                    WBoolean);
 
   wParseArgs (parser, argv, argc);
@@ -14,6 +14,12 @@ main (int argc, char **argv)
   if (wArgParserError (parser))
     {
       return -1;
+    }
+
+  if (wArgParserHelpWanted (parser))
+    {
+      wArgParserPrintHelp (parser, argv[0], "-[fz]");
+      return 0;
     }
     
   wValue *v = wFlagValue (wOptionsFindFlag (wArgParserOptions (parser), 'f'));
