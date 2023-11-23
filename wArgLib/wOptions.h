@@ -25,6 +25,8 @@ int wOptionsStragglyCount(wOptions *self);
 char* wOptionsGetStraggly (wOptions *self, int index);
 wStraggly *wOptionsGetStragglys (wOptions *self);
 
+void wOptionsPrintHelp(wOptions *self, char* __progname, char* usage);
+
 void wOptionsAddStraggly(wOptions *self, char* src);
 
 wFlag *wOptionsGetFlag (wOptions *self, int index);
