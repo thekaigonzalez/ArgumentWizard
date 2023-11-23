@@ -25,6 +25,7 @@ void wParseArgs(wArgParser *self, char** argv, int argc);
 void wArgParserAddOptions(wArgParser *self, wOptions *options);
 void wArgParserDestroy (wArgParser *self);
 int wArgParserStragglyCount(wArgParser *self);
+void wArgParserPrintHelp(wArgParser *self, char* __progname, char* usage);
 wStraggly *wArgParserStraggly(wArgParser *self, int index);
 wOptions* wArgParserOptions(wArgParser *self);
 wStraggly *wArgParserStragglies(wArgParser *self);
