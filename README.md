@@ -34,6 +34,42 @@ it. There's really no other reason because it is definitely very powerful and
 stable, however, this gave me something to work on as well as a way to implement
 better argument parsing into my C programs.
 
+## Dynamic Type System
+
+ArgWizard has a dynamic typing system (not really, but I like to call it that),
+because it was designed from the ground up to be very forgiving when it comes to
+types of arguments. ArgWizard allows the caller to handle any sort of bad input
+for any types of arguments, as it returns an error code when a bad argument is
+encountered.
+
+## Flexibility
+
+ArgWizard's simple parsing makes it easy for future contributors *and/or* users
+to add their own features, it comes with support for `gcc`-style flags such as
+`-Wall` and `-Werror`, supports long flags out of the box, and allows for short
+flags on top of that.
+
+```
+./program -Wall -I./include
+```
+
+## Straggling arguments
+
+Stragglies are arguments that don't start with a dash, arguments like "a.out" or
+"/usr/bin/" are "stragglies", which is just a stupid name for anything that you
+see in regular command line apps that doesnt have a dash, meaning that they are
+most likely supplying a program or a subcommand.
+
+## Memory Pooling
+
+ArgWizard's memory pooling system is very efficient in keeping a constrained
+flow of memory as well as being able to be customized for certain low overhead
+environments.
+
+With ArgWizard's simplistic memory usage, you will *never* need to worry about
+memory handling using ArgWizard, because where's the fun in managing memory for
+a command line library? you don't do that with `getopt`!
+
 ## Example
 
 ```c
