@@ -13,7 +13,8 @@ typedef struct wFlag wFlag;
 typedef enum _FlagType {
   WBoolean,
   WString,
-  WNumber
+  WNumber,
+  WList,
 } FlagType;
 
 wFlag* wFlagCreate(wMemPool *opt);
