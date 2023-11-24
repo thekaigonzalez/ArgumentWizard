@@ -71,6 +71,10 @@ wParseArgs (wArgParser *self, char **argv, int argc)
               self->help_needed = 1;
               break;
             }
+
+            if (strcmp(name, "help") == 0) {
+              printf("-help is ambiguous, use either -h or --help\n");
+            }
             for (int j = 0; j < strlen (name); j++)
               {
                 f = wOptionsFindFlag (self->options, name[j]);
