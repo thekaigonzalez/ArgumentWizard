@@ -145,10 +145,17 @@ wValueFromString (wMemPool *opt, char *str)
 {
   wValue *value = wValueCreate(opt);
 
+  for (int i = 0; i < strlen(str); i++) {
+    if (str[i] == '=') {
+      value->str = str + i + 1;
+      value->type = WTYPE_STRING;
+      return value;
+    }
+  }
+
   if (isdigit(str[0])) {
     value->number = strtoul(str, NULL, 10);
     value->type = WTYPE_NUMBER;
-
   }
 
   else if (strcmp(str, "true") == 0 || strcmp(str, "false") == 0) {
@@ -162,4 +169,14 @@ wValueFromString (wMemPool *opt, char *str)
   }
 
   return value;
+}
+
+wType
+wValueType (wValue *self)
+{
+  if (!self || !self->type) {
+    return WTYPE_UNKNOWN;
+  }
+
+  return self->type;
 }
