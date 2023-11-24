@@ -67,14 +67,16 @@ wParseArgs (wArgParser *self, char **argv, int argc)
           break;
         case WFlagSingular:
           {
-            if (strcmp(name, "h") == 0) {
-              self->help_needed = 1;
-              break;
-            }
+            if (strcmp (name, "h") == 0)
+              {
+                self->help_needed = 1;
+                break;
+              }
 
-            if (strcmp(name, "help") == 0) {
-              printf("-help is ambiguous, use either -h or --help\n");
-            }
+            if (strcmp (name, "help") == 0)
+              {
+                printf ("-help is ambiguous, use either -h or --help\n");
+              }
             for (int j = 0; j < strlen (name); j++)
               {
                 f = wOptionsFindFlag (self->options, name[j]);
@@ -87,7 +89,16 @@ wParseArgs (wArgParser *self, char **argv, int argc)
 
                 if (self->state == STATE_INIT && wFlagType (f) != WBoolean)
                   {
-                    self->state = STATE_LONG_SHORT_PARAMETER;
+                    if (*(name + 1) == '\0')
+                      self->state = STATE_LONG_SHORT_PARAMETER;
+                    else
+                      {
+                        printf ("%s\n", name + 1);
+                        wFlagSetValue (
+                            f, wValueFromString (
+                                   wOptionsGetPool (self->options), name + 1));
+                        break;
+                      }
                   }
                 else
                   {
@@ -103,10 +114,11 @@ wParseArgs (wArgParser *self, char **argv, int argc)
           break;
         case WFlagLong:
           {
-            if (strcmp(name, "help") == 0) {
-              self->help_needed = 1;
-              break;
-            }
+            if (strcmp (name, "help") == 0)
+              {
+                self->help_needed = 1;
+                break;
+              }
             f = wOptionsFindFlagLong (self->options, name);
             if (!f)
               {
@@ -115,19 +127,19 @@ wParseArgs (wArgParser *self, char **argv, int argc)
               }
 
             if (self->state == STATE_INIT && wFlagType (f) != WBoolean)
+              {
+                self->state = STATE_LONG_SHORT_PARAMETER;
+              }
+            else
+              {
+                if (wFlagType (f) == WBoolean)
                   {
-                    self->state = STATE_LONG_SHORT_PARAMETER;
+                    wFlagSetValue (
+                        f, wValueFromString (wOptionsGetPool (self->options),
+                                             "true"));
+                    self->state = STATE_INIT;
                   }
-                else
-                  {
-                    if (wFlagType (f) == WBoolean)
-                      {
-                        wFlagSetValue (
-                            f, wValueFromString (
-                                   wOptionsGetPool (self->options), "true"));
-                        self->state = STATE_INIT;
-                      }
-                  }
+              }
           }
           break;
         }
