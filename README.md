@@ -70,6 +70,25 @@ With ArgWizard's simplistic memory usage, you will *never* need to worry about
 memory handling using ArgWizard, because where's the fun in managing memory for
 a command line library? you don't do that with `getopt`!
 
+The default memory pool increment, being 1024, can take up much memory just off
+of simple arguments alone. Changing this value can greatly reduce the overhead
+of a command line program, and will have the exact same speed as `getopt`.
+
+Without optimizations (Increment set to 1024)
+
+```
+==11980== HEAP SUMMARY:
+==11980==     in use at exit: 0 bytes in 0 blocks
+==11980==   total heap usage: 14 allocs, 14 frees, 25,920 bytes allocated
+```
+
+With optimizations: (Increment set to 50)
+```
+==11772== HEAP SUMMARY:
+==11772==     in use at exit: 0 bytes in 0 blocks
+==11772==   total heap usage: 14 allocs, 14 frees, 1,944 bytes allocated
+```
+
 ## Example
 
 ```c
