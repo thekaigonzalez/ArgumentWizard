@@ -60,6 +60,61 @@ Stragglies are arguments that don't start with a dash, arguments like "a.out" or
 see in regular command line apps that doesnt have a dash, meaning that they are
 most likely supplying a program or a subcommand.
 
+## Argument Lists
+
+ArgWizard allows you to specify a flag as a list of different parameters,
+essentially, the list class will be an array of strings, unlike other types,
+this array has a size and can be changed at runtime as needed when new arguments
+are passed.
+
+The simple containerized nature of this type allows it to be very powerful and
+memory-efficient, especially when you have a large number of arguments to parse,
+not relying on any sort of limit so you can genuinely put as much force into it as
+you can.
+
+```c
+// $Id: wListTest.c
+
+#include "wArgParser.h"
+
+main (int argc, char **argv)
+{
+  wArgParser *parser = wArgParserCreate ();
+
+  wOptionsAddFlag (wArgParserOptions (parser), 'a', "arg",
+                   "PASS AS MANY ARGUMENTS AS YOU WISH!", WList);
+
+
+  wParseArgs (parser, argv, argc);
+
+  if (wArgParserError (parser))
+    {
+      return -1;
+    }
+
+  if (wArgParserHelpWanted (parser))
+    {
+      wArgParserPrintHelp (parser, argv[0], "-[fz]");
+      return 0;
+    }
+    
+  wValue *flags = wFlagValue (wOptionsFindFlag (wArgParserOptions (parser), 'a'));
+
+  for (int i = 0; i < wValueListSize (flags); i++) {
+    printf ("%s\n", wValueListAt (flags, i));
+  }
+
+  wArgParserDestroy (parser);
+  return 0;
+}
+```
+
+```
+$ ./list_test -a./ -a../
+./
+../
+```
+
 ## Memory Pooling
 
 ArgWizard's memory pooling system is very efficient in keeping a constrained
