@@ -34,6 +34,12 @@ it. There's really no other reason because it is definitely very powerful and
 stable, however, this gave me something to work on as well as a way to implement
 better argument parsing into my C programs.
 
+And bonus, ArgWizard is 20-50 milliseconds faster than `getopt`. Try comparing
+the compiler example in getopt to the compiler example using ArgWizard, with the
+same options passed into it. Now, while getopt uses less memory than ArgWizard,
+ArgWizard DOES support more options and is able to be scaled for
+smaller-resource environments.
+
 ## Dynamic Type System
 
 ArgWizard has a dynamic typing system (not really, but I like to call it that),
