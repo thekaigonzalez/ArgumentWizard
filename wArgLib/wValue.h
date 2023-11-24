@@ -30,7 +30,10 @@ typedef enum {
   WTYPE_STRING,
   WTYPE_NUMBER,
   WTYPE_BOOLEAN,
-  WTYPE_LIST
+  WTYPE_LIST,
+  WTYPE_UNKNOWN
 } wType;
+
+wType wValueType (wValue* self);
 
 #endif // AWIZ_WVALUE_H
