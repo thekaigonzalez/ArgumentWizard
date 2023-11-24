@@ -5,30 +5,35 @@
 #include "wError.h"
 #include "wValue.h"
 
-struct wFlag {
+struct wFlag
+{
   char flag_short; // option short (-f)
   char *flag_long; // option name (--flag)
-  char *help; // option description (This flag does this.)
-  FlagType type; // option type (Boolean, String, Number)
+  char *help;      // option description (This flag does this.)
+  FlagType type;   // option type (Boolean, String, Number)
 
   wValue *value;
+  wMemPool *_pool;
 };
 
 wFlag *
 wFlagCreate (wMemPool *opt)
 {
   wFlag *self = (wFlag *)wMemAlloc (opt, sizeof (wFlag));
+  self->_pool = opt;
 
-  if (!self) {
-    wErrorDisplay ("wFlagCreate: out of memory");
-    return NULL;
-  }
+  if (!self)
+    {
+      wErrorDisplay ("wFlagCreate: out of memory");
+      return NULL;
+    }
 
   return self;
 }
 
 void
-wFlagSet (wFlag *self, char opt_short, char *opt_long, char *help, FlagType type)
+wFlagSet (wFlag *self, char opt_short, char *opt_long, char *help,
+          FlagType type)
 {
   self->flag_short = opt_short;
   self->flag_long = opt_long;
@@ -75,5 +80,16 @@ wFlagValue (wFlag *self)
 void
 wFlagSetValue (wFlag *self, wValue *value)
 {
-  self->value = value;
+  if (self->type != WList)
+    self->value = value;
+  else
+    {
+      if (!self->value) {
+        self->value = wValueCreate (self->_pool);
+        wValueSetList (self->value);
+      }
+
+
+      wValueAppendList (self->value, wValueStr (value));
+    }
 }
