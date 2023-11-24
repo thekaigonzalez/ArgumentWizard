@@ -50,6 +50,9 @@ wFlagSetType (wFlag *self, FlagType type)
 FlagType
 wFlagType (wFlag *self)
 {
+  if (!self || !self->type) {
+    return WBoolean;
+  }
   return self->type;
 }
 
@@ -88,8 +91,7 @@ wFlagSetValue (wFlag *self, wValue *value)
         self->value = wValueCreate (self->_pool);
         wValueSetList (self->value);
       }
-
-
+      
       wValueAppendList (self->value, wValueStr (value));
     }
 }
