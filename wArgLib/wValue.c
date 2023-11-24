@@ -1,6 +1,7 @@
 // $Id: wValue.c
 #include "wValue.h"
 #include "wError.h"
+#include "wDef.h"
 
 #include <ctype.h>
 #include <string.h>
@@ -8,11 +9,14 @@
 struct wValue
 {
   wMemPool *_pool; // memory pool
+  int size; // strictly for lists
+  int capacity;
   union
   {
     char *str;
     int number;
     _Bool boolean;
+    char** lstrs;
   };
 
   wType type;
@@ -23,7 +27,10 @@ wValueCreate (wMemPool *opt)
 {
   wValue *self = (wValue *)wMemAlloc (opt, sizeof (wValue));
   self->_pool = opt;
-  
+  self->lstrs = (char **)wMemAlloc (opt, sizeof (char *) * WARGLIB_DEFAULT_POOL_INCREMENT);
+  self->capacity = WARGLIB_DEFAULT_POOL_INCREMENT;
+  self->size = 0;
+
   if (!self) { 
     wErrorDisplay ("wValueCreate: out of memory");
     return NULL;
@@ -51,6 +58,54 @@ wValueSetBoolean (wValue *self, _Bool boolean)
 {
   self->type = WTYPE_BOOLEAN;
   self->boolean = boolean;
+}
+
+void
+wValueSetList (wValue *self)
+{
+  if (!self) {
+    wErrorDisplay("wValueSetList: self is null?\n");
+    return;
+  }
+  self->type = WTYPE_LIST;
+  self->size = 0;
+}
+
+void
+wValueAppendList (wValue *self, char *str)
+{
+  if (self->size >= self->capacity) {
+    self->lstrs = realloc (
+        self->lstrs,
+        sizeof (char *) * (self->capacity + WARGLIB_DEFAULT_POOL_INCREMENT)
+    );
+  }
+  self->lstrs[self->size] = str;
+  self->size++;
+}
+
+char **
+wValueList (wValue *self)
+{
+  return self->lstrs;
+}
+
+int
+wValueListSize (wValue *self)
+{
+  if (!self || !self->size) {
+    return -1;
+  }
+  return self->size;
+}
+
+char *
+wValueListAt (wValue *self, int index)
+{
+  if (index < 0 || index >= self->size) {
+    return NULL;
+  }
+  return self->lstrs[index];
 }
 
 char *
