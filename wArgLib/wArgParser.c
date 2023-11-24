@@ -102,10 +102,10 @@ wParseArgs (wArgParser *self, char **argv, int argc)
                           }
                         else
                           {
-                            wFlagSetValue (
-                                f , wValueFromString (
-                                    wOptionsGetPool (self->options),
-                                    name + 1));
+                            wFlagSetValue (f,
+                                           wValueFromString (
+                                               wOptionsGetPool (self->options),
+                                               name + 1));
                           }
                         break;
                       }
@@ -129,20 +129,46 @@ wParseArgs (wArgParser *self, char **argv, int argc)
                 self->help_needed = 1;
                 break;
               }
+
+            char *value = NULL;
+            _Bool found = 0;
+
+            for (int j = 0; j < strlen (name); j++)
+              {
+                if (name[j] == '=')
+                  {
+                    name[j] = '\0';
+                    value = name + j + 1;
+                    found = true;
+                    break;
+                  }
+              }
+
+            printf ("%s\n", name);
+            printf ("%s\n", value);
+
             f = wOptionsFindFlagLong (self->options, name);
+
             if (!f)
               {
                 self->error = 1;
                 break;
               }
 
-            if (self->state == STATE_INIT && wFlagType (f) != WBoolean)
+            if (self->state == STATE_INIT && wFlagType (f) != WBoolean
+                && !found)
               {
                 self->state = STATE_LONG_SHORT_PARAMETER;
               }
             else
               {
-                if (wFlagType (f) == WBoolean)
+                if (found)
+                  {
+                    wFlagSetValue (
+                        f, wValueFromString (wOptionsGetPool (self->options),
+                                             value));
+                  }
+                else if (wFlagType (f) == WBoolean)
                   {
                     wFlagSetValue (
                         f, wValueFromString (wOptionsGetPool (self->options),
