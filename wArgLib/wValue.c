@@ -7,6 +7,7 @@
 
 struct wValue
 {
+  wMemPool *_pool; // memory pool
   union
   {
     char *str;
@@ -21,6 +22,8 @@ wValue *
 wValueCreate (wMemPool *opt)
 {
   wValue *self = (wValue *)wMemAlloc (opt, sizeof (wValue));
+  self->_pool = opt;
+  
   if (!self) { 
     wErrorDisplay ("wValueCreate: out of memory");
     return NULL;
