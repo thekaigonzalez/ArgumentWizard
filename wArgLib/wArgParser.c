@@ -93,10 +93,20 @@ wParseArgs (wArgParser *self, char **argv, int argc)
                       self->state = STATE_LONG_SHORT_PARAMETER;
                     else
                       {
-                        printf ("%s\n", name + 1);
-                        wFlagSetValue (
-                            f, wValueFromString (
-                                   wOptionsGetPool (self->options), name + 1));
+                        if (wFlagType (f) != WList)
+                          {
+                            wFlagSetValue (f,
+                                           wValueFromString (
+                                               wOptionsGetPool (self->options),
+                                               name + 1));
+                          }
+                        else
+                          {
+                            wFlagSetValue (
+                                f , wValueFromString (
+                                    wOptionsGetPool (self->options),
+                                    name + 1));
+                          }
                         break;
                       }
                   }
