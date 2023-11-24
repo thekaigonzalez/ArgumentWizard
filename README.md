@@ -3,6 +3,19 @@
 
 A simplistic C library for argument parsing using memory pointers.
 
+## How to use
+
+To use ArgWizard, you can simply copy the wArgLib directory into your program's
+`lib` directory, or the source directory. And you are able to include it in your
+program. You may have to link against the ArgWizard source files, however.
+
+## Building
+
+You are able to build ArgWizard on any platform with a C compiler, since
+ArgWizard uses no non-standard features (except for wCompilerExampleInGetopt),
+you are able to build and run this library on any platform such as macOS,
+Windows (primarily with Cygwin), and Linux with gcc, clang, or any other C compiler.
+
 ## Why?
 
 Because I felt like parsing arguments myself for EVERY program was a pain in the
@@ -65,6 +78,20 @@ Stragglies are arguments that don't start with a dash, arguments like "a.out" or
 "/usr/bin/" are "stragglies", which is just a stupid name for anything that you
 see in regular command line apps that doesnt have a dash, meaning that they are
 most likely supplying a program or a subcommand.
+
+## Key=Value
+
+ArgWizard allows you to specify a flag that is of a string type with a value
+attached to it in this format: `--flag=value`, for example:
+
+```
+./prog --flag=hello
+```
+
+since `flag` is `WString` assumingly, then it's value will be `hello`.
+
+No changes to existing code will be required, since this feature is built into
+the default string type out of the box.
 
 ## Argument Lists
 
@@ -235,3 +262,13 @@ $ ./program a.out -zf gcc
 gcc
 straggly: a.out
 ```
+
+## Acknowledgements
+
+This library is inspired by the amazing `argparse` library, as well as taking
+some design inspiration directly from `getopt` and `getopt_long`.
+
+## License
+
+This library is licensed under the MIT license. See the LICENSE file for more
+information.
