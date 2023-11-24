@@ -303,6 +303,7 @@ wOptionsFindFlagLong (wOptions *self, char *opt_long)
     wErrorDisplay ("wOptionsFindFlag: options are broken");
     return NULL;
   }
+
   for (int i = 0; i < self->flags_count; i++) {
     wFlag *current = wOptionsGetFlag (self, i);
     if (strcmp (wFlagLong (current), opt_long) == 0) {
