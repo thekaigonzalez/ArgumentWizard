@@ -5,3 +5,4 @@ all:
 	gcc wTest.c -o test $(FILES_N_STUFF)
 	gcc wParserTest.c -o parser_test $(FILES_N_STUFF)
 	gcc wCompilerExample.c -o compiler_example $(FILES_N_STUFF)
+	gcc wListTest.c -o list_test $(FILES_N_STUFF)
