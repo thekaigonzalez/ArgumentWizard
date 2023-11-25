@@ -3,3 +3,5 @@ parser_test
 test
 compiler_example
 list_test
+defaults_example
+hex_test
