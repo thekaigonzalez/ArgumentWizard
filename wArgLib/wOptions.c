@@ -69,20 +69,20 @@ wOptionsGetPool (wOptions *self)
   return self->__pool;
 }
 
-void
+wFlag*
 wOptionsAddFlag (wOptions *self, char opt_short, char *opt_long, char *help,
                  FlagType type)
 {
   if (!self)
     {
       wErrorDisplay ("wOptionsAddFlag: self is null");
-      return;
+      return NULL;
     }
 
   if (!self->__pool)
     {
       wErrorDisplay ("wOptionsAddFlag: self->__pool is null");
-      return;
+      return NULL;
     }
 
   if (self->flags_count >= self->flags_capacity)
@@ -97,6 +97,8 @@ wOptionsAddFlag (wOptions *self, char opt_short, char *opt_long, char *help,
 
   self->flags[self->flags_count] = flag;
   self->flags_count++;
+
+  return flag;
 }
 
 void
