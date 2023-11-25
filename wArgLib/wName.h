@@ -12,6 +12,7 @@ typedef enum _wNameType {
 
 // Returns the type of the name
 wNameType wNameTypeFromName (char *name);
+
 char* wNameCreateFrom(char* name);
 
 #endif // AWIZ_WNAME_H
