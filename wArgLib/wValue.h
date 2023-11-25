@@ -24,6 +24,9 @@ char* wValueStr (wValue* self);
 int wValueNumber (wValue* self);
 _Bool wValueBoolean (wValue* self);
 
+_Bool* wValueBooleanPtr (wValue* self);
+int* wValueNumberPtr (wValue* self);
+
 wValue *wValueFromString (wMemPool * opt, char* str);
 
 typedef enum {
