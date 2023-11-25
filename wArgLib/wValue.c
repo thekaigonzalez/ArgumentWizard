@@ -166,6 +166,7 @@ wValueFromString (wMemPool *opt, char *str)
 
   if (str[0] == '0')
     {
+
       if (str[1] == 'x' || str[1] == 'X')
         {
           value->number = strtoul (str + 2, NULL, 16);
@@ -175,12 +176,14 @@ wValueFromString (wMemPool *opt, char *str)
 
   else if (isdigit (str[0]))
     {
+
       value->number = strtoul (str, NULL, 10);
       value->type = WTYPE_NUMBER;
     }
 
   else if (strcmp (str, "true") == 0 || strcmp (str, "false") == 0)
     {
+
       value->boolean = (strcmp (str, "true") == 0) ? true : false;
       value->type = WTYPE_BOOLEAN;
     }
