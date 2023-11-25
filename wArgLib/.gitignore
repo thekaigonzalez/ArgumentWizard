@@ -8,3 +8,5 @@ hex_test
 argp_translation
 argp_univ
 argp_unix
+argp_in_argw_example
+argw_example
