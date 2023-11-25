@@ -1,7 +1,38 @@
 <!-- $Id: README.md $ -->
-# 🧙🏽🧙🏽🧙🏽 ArgWizard (wArgLib) 🧙🏽🧙🏽🧙🏽
+# 🧙🏽🧙🏽🧙🏽 ArgWizard/argw (wArgLib) 🧙🏽🧙🏽🧙🏽
 
 A simplistic C library for argument parsing using memory pointers.
+
+```c
+#include "argw.h"
+#include <stdlib.h>
+
+main (int argc, char **argv)
+{
+  argw_init()
+
+  argw_flag('v', "verbose", "Produce verbose output", WBoolean);
+  argw_flag('q', "quiet", "Don't produce any output", WBoolean);
+  argw_flag('s', "silent", "Don't produce any output", WBoolean);
+  argw_flag('o', "output", "Output to FILE instead of standard output", WString);
+
+
+  argw_parse(argc, argv);
+
+  char* OUTPUT = argw_str('o');
+  char* program = argw_positional(0);
+
+  if (argw_bool('v')) {
+    printf("verbose\n");
+  }
+
+  printf("output: %s\n", OUTPUT);
+  printf("program: %s\n", program);
+
+  argw_exit(0)
+  return 0;
+}
+```
 
 ## How to use
 
@@ -70,6 +101,18 @@ the compiler example in getopt to the compiler example using ArgWizard, with the
 same options passed into it. Now, while getopt uses less memory than ArgWizard,
 ArgWizard DOES support more options and is able to be scaled for
 smaller-resource environments.
+
+## `argw` - the official minifier for ArgWizard
+
+ARGW is a minifier for ArgWizard, meaning that it reduces the code boilerplate
+for average programs by tenfold. To compare, in `wArgWExample.c`, the lines of
+code for a simple 4 flag program are `27`. Now keep that in mind as in the
+standard `argp` example, it is around 100 lines of code, with the ArgWizard
+translation following not too far behind at just under 80 lines of code.
+
+`argw` aims to increase developer productivity by masking the boilerplate of
+ArgWizard, leaving the developer to focus on actual programming and not having
+to worry about argument parsing and memory handling.
 
 ## Dynamic Type System
 
