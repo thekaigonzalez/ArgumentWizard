@@ -80,6 +80,25 @@ wFlag *_test = wOptionsAddFlag (wArgParserOptions (parser), 't', "test",
 wFlagDefaultValue (_test, "test"); // if -t abc is specified, -t will be "abc", if not, it will be "test"
 ```
 
+## Hexadecimal
+
+ArgWizard allows flags which have hexidecimal values. Arguments such as
+`--flag=0x123` will be stored as `0x123` in the flag's value, which will later
+be converted to an integer after evaluation.
+
+```c
+wFlag *_hexFlag = wOptionsAddFlag (wArgParserOptions (parser), 'z', "hex",
+                                  "A hex value", WHex);
+...
+
+printf ("hex: %d\n", wValueNumber (V));
+```
+
+```
+$ ./hex_test --hex=0x41
+hex: 65
+```
+
 ## Flexibility
 
 ArgWizard's simple parsing makes it easy for future contributors *and/or* users
