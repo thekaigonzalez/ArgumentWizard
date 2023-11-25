@@ -61,6 +61,25 @@ types of arguments. ArgWizard allows the caller to handle any sort of bad input
 for any types of arguments, as it returns an error code when a bad argument is
 encountered.
 
+## Default Values
+
+ArgWizard supports default values. If an argument is NOT specified, then there
+will be no changes in the flag's value.
+
+With this update also changes the `wOptionsAddFlag` function to return the flag
+once it adds it to the parser's options, this greatly improves readability and
+decreases overhead, as well as making it more compatible with future versions of
+ArgWizard.
+
+```c
+wArgParser *parser = wArgParserCreate ();
+
+wFlag *_test = wOptionsAddFlag (wArgParserOptions (parser), 't', "test",
+                                  "Test flag with a default value", WString);
+
+wFlagDefaultValue (_test, "test"); // if -t abc is specified, -t will be "abc", if not, it will be "test"
+```
+
 ## Flexibility
 
 ArgWizard's simple parsing makes it easy for future contributors *and/or* users
