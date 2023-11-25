@@ -1,5 +1,5 @@
 <!-- $Id: README.md $ -->
-# ArgWizard (wArgLib)
+# 🧙🏽🧙🏽🧙🏽 ArgWizard (wArgLib) 🧙🏽🧙🏽🧙🏽
 
 A simplistic C library for argument parsing using memory pointers.
 
