@@ -149,6 +149,18 @@ wValueBoolean (wValue *self)
   return false;
 }
 
+_Bool *
+wValueBooleanPtr (wValue *self)
+{
+  return &self->boolean;
+}
+
+int *
+wValueNumberPtr (wValue *self)
+{
+  return &self->number;
+}
+
 wValue *
 wValueFromString (wMemPool *opt, char *str)
 {
