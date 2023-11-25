@@ -9,6 +9,25 @@ To use ArgWizard, you can simply copy the wArgLib directory into your program's
 `lib` directory, or the source directory. And you are able to include it in your
 program. You may have to link against the ArgWizard source files, however.
 
+## Feature Chart
+
+Certainly! Below is a markdown chart comparing the features of `argw` (ArgumentWizard), `argp`, and `getopt`.
+| Feature                                 | argw                  | argp                  | getopt               |
+|-----------------------------------------|-----------------------|-----------------------|----------------------|
+| **Option Types**                        | Customizable          | Fixed                 | Short and Long Only  |
+| **Default Values**                      | :heavy_check_mark:    | :heavy_check_mark:    | :x:                  |
+| **Memory Pooling**                      | :heavy_check_mark:    | :x:                   | :x:                  |
+| **Support for Multi-Character Options** | :heavy_check_mark:    | :heavy_check_mark:    | :x:                  |
+| **Support for Boolean Options**         | :heavy_check_mark:    | :heavy_check_mark:    | :x:                  |
+| **Support for Options with Values**     | :heavy_check_mark:    | :heavy_check_mark:    | :heavy_check_mark:   |
+| **Support for Short and Long Options**  | :heavy_check_mark:    | :heavy_check_mark:    | :heavy_check_mark:   |
+| **Dynamic Typing System**               | :heavy_check_mark:    | :x:                   | :x:                  |
+| **Customizable Increment for Pools**    | :heavy_check_mark:    | :x:                   | :x:                  |
+| **Support for Command Arguments**       | :heavy_check_mark:    | :heavy_check_mark:    | :heavy_check_mark:   |
+| **Ease of Use**                         | Moderate              | Moderate              | Simple               |
+| **Memory Handling**                     | Handled by the library| Manually managed       | Manually managed      |
+| **Standard Library**                    | Custom                | Part of GNU libc      | Part of Standard C Lib|
+
 ## Building
 
 You are able to build ArgWizard on any platform with a C compiler, since
