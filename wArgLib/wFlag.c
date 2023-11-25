@@ -74,6 +74,18 @@ wFlagHelp (wFlag *self)
   return self->help;
 }
 
+void
+wFlagDefaultValue (wFlag *self, char *value)
+{
+  if (!self || !value) {
+    return;
+  }
+
+  if (self->type != WList) { // you can't set a default value for a list, that makes no sense
+    self->value = wValueFromString (self->_pool, value);
+  }
+}
+
 wValue *
 wFlagValue (wFlag *self)
 {
