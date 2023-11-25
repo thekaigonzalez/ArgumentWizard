@@ -27,6 +27,8 @@
   wFlagDefaultValue (wOptionsFindFlag (wArgParserOptions (parser), flag),     \
                      value)
 
+#define argw_usage(usage) wArgParserPrintHelp (parser, argv[0], usage)
+
 #define argw_positional(pos) (pos >= wArgParserStragglyCount (parser)) ? NULL \
   : wOptionsGetStraggly (wArgParserOptions (parser), pos)
 
