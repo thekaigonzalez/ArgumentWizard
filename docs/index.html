@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=1200, initial-scale=1.0">
+  <title>ArgWizard</title>
+  <style>
+    body {
+      background-color: rgb(243, 243, 243);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      color: rgb(28, 28, 28);
+      margin: 0;
+
+    }
+
+    .middle {
+      margin: 0 auto;
+      display: flex;
+      justify-content: center;
+    }
+
+    .wizard-box {
+      margin: 0 10px;
+      /* Reduced margin */
+      padding: 1.5em;
+      /* Increased padding */
+      width: 40%;
+      /* Increased width */
+      max-width: 500px;
+    }
+
+    p,
+    a {
+      font-size: 20px;
+      /* Increased font size */
+      margin-bottom: 10px;
+      /* Added margin for better spacing between elements */
+    }
+
+    a {
+      text-decoration: none;
+      color: #6f35db;
+      transition: ease-in-out 0.2s;
+    }
+
+    a:hover {
+      color: rgb(198, 198, 198);
+    }
+
+    .code {
+      font-family: monospace;
+      background-color: rgb(229, 229, 229);
+      border-radius: 5px;
+      border: solid;
+      border-width: 1px;
+      border-color: rgb(180, 180, 180);
+    }
+
+    .navbar {
+      display: flex;
+      font-family: Arial, Helvetica, sans-serif;
+      font-variant: small-caps;
+      align-items: center;
+      justify-content: space-around; /* Centered with equal space around items */
+      background-color: rgb(235, 235, 235);
+      border: solid;
+      border-width: 1px;
+      border-color: rgb(180, 180, 180);
+      border-radius: 5px;
+      margin-bottom: 0;
+      margin-top: 0;
+      padding: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .navbar a {
+      color: rgb(61, 67, 127);
+      text-decoration: none;
+      margin: 0 10px;
+      transition: ease-in-out 0.2s;
+    }
+
+
+
+    .navbar a:hover {
+      color: rgb(180, 180, 180);
+
+    }
+  </style>
+</head>
+
+<body>
+  <div class="navbar">
+    <a href="https://github.com/thekaigonzalez/ArgumentWizard">GitHub</a>
+    <a href="https://github.com/thekaigonzalez/ArgumentWizard/issues">Issues</a>
+    <a href="https://github.com/thekaigonzalez/ArgumentWizard/releases">Releases</a>
+  </div>
+  <div class="middle">
+    <div class="wizard-box">
+      <h1>ArgWizard</h1>
+      <p>A simple, elegant, memory-safe library for argument parsing.
+        Argument-Wizard serves as a drop in replacement for <span class="code">getopt</span>, being as easy,
+      if not easier to implement and setup than a majority of other argument
+      parsing libraries. ArgWizard is 20-50 milliseconds faster than <span
+      class="code">getopt</span>.</p>
+    </div>
+
+    <div class="wizard-box">
+      <h1>How?</h1>
+      <p>If you want to read up on how ArgWizard's internals work, we recommend
+      you check out the <br><a class="code" href="./Internals.pdf">Internals</a>
+      document, that comes with ArgWizard's source code, as well as an updated
+      copy which is available on this website.</p>
+    </div>
+
+    <div class="wizard-box">
+      <h1>Downloads</h1>
+      <hr>
+      <a href="https://github.com/thekaigonzalez/ArgumentWizard/archive/refs/tags/v1.0.0.zip">Source
+        Code (Zip)</a>
+      <br>
+      <a href="https://github.com/thekaigonzalez/ArgumentWizard/archive/refs/tags/v1.0.0.tar.gz">Source Code
+        (Tarball)</a>
+      <br>
+      <a href="https://github.com/thekaigonzalez/ArgumentWizard/releases">Releases</a>
+    </div>
+  </div>
+</body>
+
+</html>
