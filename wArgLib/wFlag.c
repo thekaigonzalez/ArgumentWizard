@@ -5,6 +5,8 @@
 #include "wError.h"
 #include "wValue.h"
 
+#include <string.h>
+
 struct wFlag
 {
   char flag_short; // option short (-f)
@@ -83,6 +85,20 @@ wFlagDefaultValue (wFlag *self, char *value)
 
   if (self->type != WList) { // you can't set a default value for a list, that makes no sense
     self->value = wValueFromString (self->_pool, value);
+  }
+}
+
+void
+wFlagToggle (wFlag *self)
+{
+  if (!self || !(self->type == WBoolean)) {
+    return;
+  }
+
+  if (self->value) {
+    char* __dec = (strcmp (wValueStr (self->value), "true") == 0) ? "false" : "true";
+
+    self->value = wValueFromString (self->_pool, __dec);
   }
 }
 
