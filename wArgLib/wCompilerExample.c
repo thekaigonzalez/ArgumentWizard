@@ -8,6 +8,7 @@ main (int argc, char **argv)
 
   wOptionsAddFlag (wArgParserOptions (parser), 'o', "out",
                    "The output file", WString);
+
   wOptionsAddFlag (wArgParserOptions (parser), 'I', "include", "The directory to include.",
                    WString);
   wOptionsAddFlag (wArgParserOptions (parser), 'g', "debug", "Enable debug information.",
@@ -16,6 +17,8 @@ main (int argc, char **argv)
                    WString);
   wOptionsAddFlag (wArgParserOptions (parser), 'O', "optimize", "Enable optimization.",
                    WBoolean);
+
+
 
   wParseArgs (parser, argv, argc);
 
@@ -26,7 +29,7 @@ main (int argc, char **argv)
 
   if (wArgParserHelpWanted (parser))
     {
-      wArgParserPrintHelp (parser, argv[0], "-[fz]");
+      wArgParserPrintHelp (parser, argv[0], "-[oIgWO]");
       return 0;
     }
     
