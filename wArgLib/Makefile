@@ -8,3 +8,5 @@ all:
 	gcc wListTest.c -o list_test $(FILES_N_STUFF)
 	gcc wDefaultsExample.c -o defaults_example $(FILES_N_STUFF)
 	gcc wHexTest.c -o hex_test $(FILES_N_STUFF)
+	gcc wArgPWizExample.c -o argp_univ $(FILES_N_STUFF)
+	gcc wArgPGNUExample3.c -o argp_unix $(FILES_N_STUFF)
