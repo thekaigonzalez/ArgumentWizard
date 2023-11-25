@@ -15,7 +15,7 @@ typedef struct wOptions wOptions;
 // things i forgot about lol
 wOptions *wOptionsCreate ();
 wMemPool *wOptionsGetPool (wOptions *self);
-void wOptionsAddFlag (wOptions *self, char opt_short, char *opt_long,
+wFlag* wOptionsAddFlag (wOptions *self, char opt_short, char *opt_long,
                       char *help, FlagType type);
 void wOptionsDestroy (wOptions *self);
 wFlag** wOptionsFlags (wOptions *self);
