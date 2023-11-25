@@ -144,9 +144,6 @@ wParseArgs (wArgParser *self, char **argv, int argc)
                   }
               }
 
-            printf ("%s\n", name);
-            printf ("%s\n", value);
-
             f = wOptionsFindFlagLong (self->options, name);
 
             if (!f)
