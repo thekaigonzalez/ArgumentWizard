@@ -1,5 +1,4 @@
 // $Id: wHexTest.c
-// $Id: wDefaultsExample.c
 
 #include "wArgParser.h"
 
