@@ -10,3 +10,5 @@ all:
 	gcc wHexTest.c -o hex_test $(FILES_N_STUFF)
 	gcc wArgPWizExample.c -o argp_univ $(FILES_N_STUFF)
 	gcc wArgPGNUExample3.c -o argp_unix $(FILES_N_STUFF)
+	gcc wArgWExample.c -o argw_example $(FILES_N_STUFF)
+	gcc wArgPInArgWExample.c -o argp_in_argw_example $(FILES_N_STUFF)
