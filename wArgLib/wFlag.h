@@ -28,6 +28,7 @@ char* wFlagLong(wFlag* self);
 char* wFlagHelp(wFlag* self);
 
 void wFlagDefaultValue(wFlag* self, char* value);
+void wFlagToggle(wFlag* self);
 
 wValue * wFlagValue(wFlag * self);
 void wFlagSetValue(wFlag* self, wValue* value);
