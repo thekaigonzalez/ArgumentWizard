@@ -11,7 +11,6 @@ program. You may have to link against the ArgWizard source files, however.
 
 ## Feature Chart
 
-Certainly! Below is a markdown chart comparing the features of `argw` (ArgumentWizard), `argp`, and `getopt`.
 | Feature                                 | argw                  | argp                  | getopt               |
 |-----------------------------------------|-----------------------|-----------------------|----------------------|
 | **Option Types**                        | Customizable          | Fixed                 | Short and Long Only  |
