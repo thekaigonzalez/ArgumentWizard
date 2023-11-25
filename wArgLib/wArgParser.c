@@ -67,7 +67,9 @@ wParseArgs (wArgParser *self, char **argv, int argc)
           break;
         case WFlagSingular:
           {
-            if (strcmp (name, "h") == 0)
+            wFlag* f = wOptionsFindFlag (self->options, 'h');
+
+            if (strcmp (name, "h") == 0 && !f)
               {
                 self->help_needed = 1;
                 break;
@@ -124,7 +126,9 @@ wParseArgs (wArgParser *self, char **argv, int argc)
           break;
         case WFlagLong:
           {
-            if (strcmp (name, "help") == 0)
+            wFlag* help_flag = wOptionsFindFlagLong (self->options, "help");
+
+            if (strcmp (name, "help") == 0 && !help_flag)
               {
                 self->help_needed = 1;
                 break;
