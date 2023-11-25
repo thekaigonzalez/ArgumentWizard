@@ -15,6 +15,7 @@ typedef enum _FlagType {
   WString,
   WNumber,
   WList,
+  WHex,
 } FlagType;
 
 wFlag* wFlagCreate(wMemPool *opt);
@@ -26,6 +27,7 @@ char wFlagShort(wFlag* self);
 char* wFlagLong(wFlag* self);
 char* wFlagHelp(wFlag* self);
 
+void wFlagDefaultValue(wFlag* self, char* value);
 
 wValue * wFlagValue(wFlag * self);
 void wFlagSetValue(wFlag* self, wValue* value);
