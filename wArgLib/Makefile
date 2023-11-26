@@ -12,3 +12,9 @@ all:
 	gcc wArgPGNUExample3.c -o argp_unix $(FILES_N_STUFF)
 	gcc wArgWExample.c -o argw_example $(FILES_N_STUFF)
 	gcc wArgPInArgWExample.c -o argp_in_argw_example $(FILES_N_STUFF)
+
+lib:
+	gcc $(FILES_N_STUFF) -shared -o libwArgLib.so
+	mv libwArgLib.so /usr/local/lib/
+	mkdir -p /usr/include/argw
+	cp $(wildcard *.h) /usr/include/argw
