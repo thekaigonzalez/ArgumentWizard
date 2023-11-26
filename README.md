@@ -40,6 +40,20 @@ To use ArgWizard, you can simply copy the wArgLib directory into your program's
 `lib` directory, or the source directory. And you are able to include it in your
 program. You may have to link against the ArgWizard source files, however.
 
+## How to build
+
+To build ArgWizard globally, you can run `sudo make lib` to build it as a shared
+library and add it to your `/usr/lib` directory. You can then use it in any
+program by including the headers found in the sources, or linking against the
+library.
+
+```bash
+$ sudo make lib
+...
+(in another program)
+$ gcc cli.c -lwArgLib -o cli
+```
+
 ## Feature Chart
 
 | Feature                                 | argw                  | argp                  | getopt               |
